@@ -139,21 +139,9 @@ public class BooksController : ControllerBase
         entity.AuthorId = dto.AuthorId;
 
         await _db.SaveChangesAsync();
+        return NoContent();
 
-        await _db.Entry(entity).Reference(e => e.Author).LoadAsync();
 
-        return Ok(new BookDto
-        {
-            Id = entity.Id,
-            Title = entity.Title,
-            Year = entity.Year,
-            Author = new AuthorDto
-            {
-                Id = author.Id,
-                FirstName = author.FirstName,
-                LastName = author.LastName
-            }
-        });
     }
 
     [HttpDelete("{id:int}")]

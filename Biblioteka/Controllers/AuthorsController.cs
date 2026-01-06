@@ -96,13 +96,8 @@ public class AuthorsController : ControllerBase
         entity.LastName = last;
 
         await _db.SaveChangesAsync();
+        return NoContent();
 
-        return Ok(new AuthorDto
-        {
-            Id = entity.Id,
-            FirstName = entity.FirstName,
-            LastName = entity.LastName
-        });
     }
 
     [HttpDelete("{id:int}")]
